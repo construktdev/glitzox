@@ -3,7 +3,7 @@
 Development phase
 
 
-If you want run this add a Token.java Class in the src/dev/construkter/glitzoxhelper:
+If you want run this, add a Token.java Class in the src/dev/construkter/glitzoxhelper:
 ```java
 package dev.construkter.glitzoxhelper;
 
