@@ -1,0 +1,3 @@
+# GlitzoX
+
+Development phase
