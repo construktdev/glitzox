@@ -102,7 +102,7 @@ public class SlashCommandHandler extends ListenerAdapter {
 
                 event.replyEmbeds(embedBuilder.build()).queue( messsage -> {
                     try {
-                        Thread.sleep(1100L);
+                        Thread.sleep(500L);
                     } catch (InterruptedException e) {
                         // pass
                     }

@@ -42,7 +42,7 @@ public class Main extends ListenerAdapter {
                             .addOption(OptionType.STRING, "message", "Die Nachricht die gesendet werden soll", true),
                     Commands.slash("alive", "Überprüfe ob der Server online ist")
             ).queue();
-            System.out.println(guild.getName());
+            System.out.println("Registering commands for Guild " + guild.getName());
         }
 
         EmbedBuilder embedBuilder = new EmbedBuilder()
