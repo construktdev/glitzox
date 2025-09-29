@@ -11,6 +11,8 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.time.Instant;
 
 public class SlashCommandHandler extends ListenerAdapter {
@@ -23,8 +25,9 @@ public class SlashCommandHandler extends ListenerAdapter {
             case "help" -> {
                 EmbedBuilder helEmbed = new EmbedBuilder()
                         .setTitle("Hilfe")
-                        .addField("/help", "Zeigt diesen Embed", false)
-                        .addField("/announce <type> <message>", "Erlaubt Admins Nachrichten zu veröffentlichen", false)
+                        .addField("</help:1421914614043644096>", "Zeigt diesen Embed", false)
+                        .addField("</announce:1421934775266050213> <type> <message>", "Erlaubt Admins Nachrichten zu veröffentlichen", false)
+                        .addField("</alive:1422252921814253610>", "Überprüft ob der Minecraft Server online ist", false)
                         .setFooter("GlitzoX Helper")
                         .setTimestamp(Instant.now());
 
@@ -89,7 +92,48 @@ public class SlashCommandHandler extends ListenerAdapter {
 
                 event.reply("Die Nachricht wurde erfolgreich versendet!").setEphemeral(true).queue();
             }
+            case "alive" -> {
+                EmbedBuilder embedBuilder = new EmbedBuilder()
+                        .setTitle("Checking...")
+                        .setDescription("\uD83D\uDD03 Checking if the server is online")
+                        .setFooter("GlitzoX Helper")
+                        .setTimestamp(Instant.now())
+                        .setColor(Color.ORANGE);
+
+                event.replyEmbeds(embedBuilder.build()).queue( messsage -> {
+                    try {
+                        Thread.sleep(1100L);
+                    } catch (InterruptedException e) {
+                        // pass
+                    }
+
+                    EmbedBuilder embedBuilder2 = new EmbedBuilder()
+                            .setTitle("Is the Server Online?")
+                            .setFooter("GlitzoX Helper")
+                            .setTimestamp(Instant.now());
+
+                    if (isOnline()) {
+                        embedBuilder2.setDescription("<:SUCCESS77:1422251435059318946> Der Server ist online!")
+                                .setColor(Color.GREEN);
+                    } else {
+                        embedBuilder2.setDescription("❌ Der Server ist offline!")
+                                .setColor(Color.RED);
+                    }
+
+                    messsage.editOriginalEmbeds(embedBuilder2.build()).queue();
+                });
+            }
+
             default -> event.reply("Invalid Command Interaction").setEphemeral(true).queue();
+        }
+    }
+
+    private static boolean isOnline() {
+        try (Socket socket = new Socket()) {
+            socket.connect(new InetSocketAddress("xeon1.server.construkter.dev", 25565), 2000);
+            return true;
+        } catch (Exception e) {
+            return false;
         }
     }
 }

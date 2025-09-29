@@ -39,7 +39,8 @@ public class Main extends ListenerAdapter {
                     Commands.slash("help", "Zeigt ein Hilfe Menü an"),
                     Commands.slash("announce", "Sendet eine Message an alle User")
                             .addOption(OptionType.STRING, "type", "Der Typ des Announcements (dm/channel)", true)
-                            .addOption(OptionType.STRING, "message", "Die Nachricht die gesendet werden soll", true)
+                            .addOption(OptionType.STRING, "message", "Die Nachricht die gesendet werden soll", true),
+                    Commands.slash("alive", "Überprüfe ob der Server online ist")
             ).queue();
             System.out.println(guild.getName());
         }
