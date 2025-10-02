@@ -1,6 +1,7 @@
 package dev.construkter.glitzoxhelper;
 
 import dev.construkter.glitzoxhelper.commands.SlashCommandHandler;
+import dev.construkter.glitzoxhelper.listeners.JoinHandler;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -23,7 +24,7 @@ public class Main extends ListenerAdapter {
     public static void main(String[] args) {
         JDA jda = JDABuilder.createDefault(Token.get())
                 .setActivity(Activity.playing("GlitzoriumX"))
-                .addEventListeners(new SlashCommandHandler(), new Main())
+                .addEventListeners(new SlashCommandHandler(), new Main(), new JoinHandler())
                 .build();
     }
 
