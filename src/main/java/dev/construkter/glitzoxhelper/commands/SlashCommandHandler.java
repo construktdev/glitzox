@@ -9,6 +9,7 @@ import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
 
 import java.awt.*;
 import java.net.InetSocketAddress;
@@ -18,6 +19,7 @@ import java.time.Instant;
 public class SlashCommandHandler extends ListenerAdapter {
 
     static TextChannel announcementChannel = Main.announcementChannel;
+    private static final Logger LOGGER = Main.logger;
 
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
@@ -126,6 +128,8 @@ public class SlashCommandHandler extends ListenerAdapter {
 
             default -> event.reply("Invalid Command Interaction").setEphemeral(true).queue();
         }
+
+        LOGGER.info("{} triggered the command {} in {} ({})", event.getMember().getUser().getName(), event.getName(), event.getChannel().getName(), event.getGuild().getName());
     }
 
     private static boolean isOnline() {

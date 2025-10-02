@@ -5,6 +5,8 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.time.Instant;
@@ -12,6 +14,7 @@ import java.time.Instant;
 public class JoinHandler extends ListenerAdapter {
 
     private static final TextChannel LOG = Main.logChannel;
+    private static final Logger LOGGER = Main.logger;
 
     @Override
     public void onGuildMemberJoin(GuildMemberJoinEvent event) {
@@ -23,5 +26,6 @@ public class JoinHandler extends ListenerAdapter {
                 .setTimestamp(Instant.now());
 
         LOG.sendMessageEmbeds(embedBuilder.build()).queue();
+        LOGGER.info("{} joined the guild {}", event.getMember().getUser().getName(), event.getGuild().getName());
     }
 }

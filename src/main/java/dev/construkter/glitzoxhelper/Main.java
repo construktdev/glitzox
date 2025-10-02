@@ -12,6 +12,8 @@ import net.dv8tion.jda.api.events.session.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.time.Instant;
@@ -20,7 +22,8 @@ public class Main extends ListenerAdapter {
 
     public static TextChannel logChannel;
     public static TextChannel announcementChannel;
-    public static final String VERSION = "1.0.1";
+    public static final String VERSION = "1.0.2-l";
+    public static Logger logger;
 
     public static void main(String[] args) {
         JDA jda = JDABuilder.createDefault(Token.get())
@@ -35,6 +38,7 @@ public class Main extends ListenerAdapter {
 
         logChannel = api.getTextChannelById(1421916551619149824L);
         announcementChannel = api.getTextChannelById(1420468205360517162L);
+        logger = LoggerFactory.getLogger(Main.class);
 
         for (Guild guild : api.getGuilds()) {
             guild.updateCommands().addCommands(
@@ -44,7 +48,7 @@ public class Main extends ListenerAdapter {
                             .addOption(OptionType.STRING, "message", "Die Nachricht die gesendet werden soll", true),
                     Commands.slash("alive", "Überprüfe ob der Server online ist")
             ).queue();
-            System.out.println("Registering commands for Guild " + guild.getName());
+            logger.info("Registering commands for Guild {}", guild.getName());
         }
 
         EmbedBuilder embedBuilder = new EmbedBuilder()
