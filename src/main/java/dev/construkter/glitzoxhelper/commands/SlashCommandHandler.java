@@ -32,6 +32,7 @@ public class SlashCommandHandler extends ListenerAdapter {
                         .addField("</help:1421914614043644096>", "Zeigt diesen Embed", false)
                         .addField("</announce:1421934775266050213> <type> <message>", "Erlaubt Admins Nachrichten zu veröffentlichen", false)
                         .addField("</alive:1422252921814253610>", "Überprüft ob der Minecraft Server online ist", false)
+                        .addField("</version:1423758521287184484>", "Zeigt die aktuelle Version des Bots an", false)
                         .setFooter("GlitzoX Helper")
                         .setTimestamp(Instant.now());
 

@@ -23,7 +23,7 @@ public class Main extends ListenerAdapter {
 
     public static TextChannel logChannel;
     public static TextChannel announcementChannel;
-    public static final String VERSION = "1.0.2-l";
+    public static final String VERSION = "1.0.3";
     public static Logger logger = LoggerFactory.getLogger(GlitzoXLogger.class);
 
     public static void main(String[] args) {
@@ -51,7 +51,8 @@ public class Main extends ListenerAdapter {
                     Commands.slash("announce", "Sendet eine Message an alle User")
                             .addOption(OptionType.STRING, "type", "Der Typ des Announcements (dm/channel)", true)
                             .addOption(OptionType.STRING, "message", "Die Nachricht die gesendet werden soll", true),
-                    Commands.slash("alive", "Überprüfe ob der Server online ist")
+                    Commands.slash("alive", "Überprüfe ob der Server online ist"),
+                    Commands.slash("version", "Zeigt die aktuelle Version der Instanz an")
             ).queue();
             logger.info("Registering commands for Guild {}", guild.getName());
         }
