@@ -2,6 +2,7 @@ package dev.construkter.glitzoxhelper;
 
 import dev.construkter.glitzoxhelper.commands.SlashCommandHandler;
 import dev.construkter.glitzoxhelper.listeners.JoinHandler;
+import dev.construkter.glitzoxhelper.logging.GlitzoXLogger;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -30,6 +31,11 @@ public class Main extends ListenerAdapter {
                 .setActivity(Activity.playing("GlitzoriumX"))
                 .addEventListeners(new SlashCommandHandler(), new Main(), new JoinHandler())
                 .build();
+        try {
+            jda.awaitReady();
+        } catch (InterruptedException e) {
+            logger.error("Interrupted while waiting for JDA to start");
+        }
     }
 
     @Override
@@ -38,7 +44,7 @@ public class Main extends ListenerAdapter {
 
         logChannel = api.getTextChannelById(1421916551619149824L);
         announcementChannel = api.getTextChannelById(1420468205360517162L);
-        logger = LoggerFactory.getLogger(Main.class);
+        logger = LoggerFactory.getLogger(GlitzoXLogger.class);
 
         for (Guild guild : api.getGuilds()) {
             guild.updateCommands().addCommands(
