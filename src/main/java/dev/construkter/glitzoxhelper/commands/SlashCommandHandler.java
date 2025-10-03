@@ -1,6 +1,7 @@
 package dev.construkter.glitzoxhelper.commands;
 
 import dev.construkter.glitzoxhelper.Main;
+import dev.construkter.glitzoxhelper.logging.GlitzoXLogger;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Guild;
@@ -10,6 +11,7 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.net.InetSocketAddress;
@@ -19,7 +21,7 @@ import java.time.Instant;
 public class SlashCommandHandler extends ListenerAdapter {
 
     static TextChannel announcementChannel = Main.announcementChannel;
-    private static final Logger LOGGER = Main.logger;
+    private static final Logger LOGGER = LoggerFactory.getLogger(SlashCommandHandler.class);
 
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
