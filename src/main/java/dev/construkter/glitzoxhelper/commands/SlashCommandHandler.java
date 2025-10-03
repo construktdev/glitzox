@@ -28,7 +28,7 @@ public class SlashCommandHandler extends ListenerAdapter {
         switch (event.getName()) {
             case "help" -> {
                 EmbedBuilder helEmbed = new EmbedBuilder()
-                        .setTitle("Hilfe")
+                        .setTitle("\uD83D\uDCD6 Hilfe")
                         .addField("</help:1421914614043644096>", "Zeigt diesen Embed", false)
                         .addField("</announce:1421934775266050213> <type> <message>", "Erlaubt Admins Nachrichten zu veröffentlichen", false)
                         .addField("</alive:1422252921814253610>", "Überprüft ob der Minecraft Server online ist", false)
@@ -80,7 +80,7 @@ public class SlashCommandHandler extends ListenerAdapter {
                     Guild guild = event.getGuild();
 
                     if (guild == null) {
-                        event.reply("Dieser Befehl kann nur in Gilden ausgeführt werden").setEphemeral(true).queue();
+                        event.reply("❌ Dieser Befehl kann nur in Gilden ausgeführt werden").setEphemeral(true).queue();
                         return;
                     }
 
@@ -94,7 +94,7 @@ public class SlashCommandHandler extends ListenerAdapter {
                     }
                 }
 
-                event.reply("Die Nachricht wurde erfolgreich versendet!").setEphemeral(true).queue();
+                event.reply("✅ Die Nachricht wurde erfolgreich versendet!").setEphemeral(true).queue();
             }
             case "alive" -> {
                 EmbedBuilder embedBuilder = new EmbedBuilder()
@@ -112,7 +112,7 @@ public class SlashCommandHandler extends ListenerAdapter {
                     }
 
                     EmbedBuilder embedBuilder2 = new EmbedBuilder()
-                            .setTitle("Is the Server Online?")
+                            .setTitle("\uD83D\uDDA5\uFE0F Is the Server Online?")
                             .setFooter("GlitzoX Helper")
                             .setTimestamp(Instant.now());
 
@@ -126,6 +126,17 @@ public class SlashCommandHandler extends ListenerAdapter {
 
                     messsage.editOriginalEmbeds(embedBuilder2.build()).queue();
                 });
+            }
+
+            case "version" -> {
+                EmbedBuilder embedBuilder = new EmbedBuilder()
+                        .setTitle("♻\uFE0F GlitzoX Version")
+                        .setDescription("Diese GlitzoXHelper Instanz nutzt die Version " + Main.VERSION)
+                        .setFooter("GlitzoX Helper")
+                        .setTimestamp(Instant.now())
+                        .setColor(Color.GREEN);
+
+                event.replyEmbeds(embedBuilder.build()).queue();
             }
 
             default -> event.reply("Invalid Command Interaction").setEphemeral(true).queue();

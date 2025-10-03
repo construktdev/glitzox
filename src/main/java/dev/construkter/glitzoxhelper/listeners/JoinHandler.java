@@ -19,7 +19,7 @@ public class JoinHandler extends ListenerAdapter {
     @Override
     public void onGuildMemberJoin(GuildMemberJoinEvent event) {
         EmbedBuilder embedBuilder = new EmbedBuilder()
-                .setTitle("New Member joined")
+                .setTitle("\uD83D\uDD14 New Member joined")
                 .setColor(Color.ORANGE)
                 .setDescription(event.getMember().getAsMention() + " joined the server.")
                 .setFooter(event.getMember().getUser().getName(), event.getMember().getUser().getAvatarUrl())

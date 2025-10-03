@@ -24,7 +24,7 @@ public class Main extends ListenerAdapter {
     public static TextChannel logChannel;
     public static TextChannel announcementChannel;
     public static final String VERSION = "1.0.2-l";
-    public static Logger logger;
+    public static Logger logger = LoggerFactory.getLogger(GlitzoXLogger.class);
 
     public static void main(String[] args) {
         JDA jda = JDABuilder.createDefault(Token.get())
@@ -44,7 +44,6 @@ public class Main extends ListenerAdapter {
 
         logChannel = api.getTextChannelById(1421916551619149824L);
         announcementChannel = api.getTextChannelById(1420468205360517162L);
-        logger = LoggerFactory.getLogger(GlitzoXLogger.class);
 
         for (Guild guild : api.getGuilds()) {
             guild.updateCommands().addCommands(
