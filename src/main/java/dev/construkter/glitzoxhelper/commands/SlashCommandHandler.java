@@ -1,7 +1,6 @@
 package dev.construkter.glitzoxhelper.commands;
 
 import dev.construkter.glitzoxhelper.Main;
-import dev.construkter.glitzoxhelper.logging.GlitzoXLogger;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Guild;
@@ -138,6 +137,40 @@ public class SlashCommandHandler extends ListenerAdapter {
                         .setColor(Color.GREEN);
 
                 event.replyEmbeds(embedBuilder.build()).queue();
+            }
+
+            case "clear" -> {
+                if (event.getGuild() == null || event.getMember() == null) {
+                    return;
+                }
+
+                if (!event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
+                    event.reply("Du musst Admin sein um diesen Befehl auszuführen").setEphemeral(true).queue();
+                    return;
+                }
+                var amount = event.getOption("amount");
+
+                if (amount == null) {
+                    event.reply("Bitte gebe an wie viel du löschen möchtest (2-100)").setEphemeral(true).queue();
+                    return;
+                }
+
+                int messages = amount.getAsInt();
+
+                if (messages < 2 || messages > 100) {
+                    event.reply("Bitte gebe an wie viel du löschen möchtest (2-100)").setEphemeral(true).queue();
+                    return;
+                }
+
+                TextChannel channel = event.getChannel().asTextChannel();
+
+                channel.getHistory().retrievePast(messages).queue(history -> {
+                    channel.deleteMessages(history).queue(
+                            success -> event.reply("✅ Nachrichten erfolgreich gelöscht").setEphemeral(true).queue(),
+                            error -> event.reply(error.getMessage()).setEphemeral(false).queue()
+                    );
+                });
+
             }
 
             default -> event.reply("Invalid Command Interaction").setEphemeral(true).queue();
