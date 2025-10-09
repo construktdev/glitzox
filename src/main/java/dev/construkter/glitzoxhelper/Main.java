@@ -27,11 +27,12 @@ public class Main extends ListenerAdapter {
 
     public static TextChannel logChannel;
     public static TextChannel announcementChannel;
-    public static final String VERSION = "1.0.3";
-    public static Logger logger = LoggerFactory.getLogger(GlitzoXLogger.class);
+    public static final String VERSION = "1.0.4";
+    public static Logger logger = GlitzoXLogger.getUniversalLogger();
     public static boolean DEBUG_MODE = false;
 
     public static void main(String[] args) {
+        GlitzoXLogger.init();
         if (args.length >= 1) {
             for (String arg : args) {
                 if (arg.equalsIgnoreCase("debug")) {

@@ -3,4 +3,5 @@
 /.idea
 /.vscode
 
-/src/main/java/dev/construkter/glitzoxhelper/Token.java
+.token
+/.token
