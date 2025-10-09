@@ -3,13 +3,7 @@
 Development phase
 
 
-If you want run this, add a Token.java Class in the src/main/java/dev/construkter/glitzoxhelper:
-```java
-package dev.construkter.glitzoxhelper;
-
-public class Token {
-    public static String get() {
-        return "YOUR BOT TOKEN";
-    }
-}
+If you want run this, add a .token file in the same directory as the jar file
+```plain
+<YOUR TOKEN>
 ```
