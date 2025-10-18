@@ -5,6 +5,7 @@ import dev.construkter.glitzoxhelper.commands.SlashCommandHandler;
 import dev.construkter.glitzoxhelper.listeners.DebugLogger;
 import dev.construkter.glitzoxhelper.listeners.JoinHandler;
 import dev.construkter.glitzoxhelper.logging.GlitzoXLogger;
+import dev.construkter.glitzoxhelper.util.SmartProgressBar;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -67,6 +68,20 @@ public class Main extends ListenerAdapter {
                             .addOption(OptionType.INTEGER, "amount", "Wie viele Nachrichten gelöscht werden", true)
             ).queue();
             logger.info("Registering commands for Guild {}", guild.getName());
+            SmartProgressBar bar = new SmartProgressBar(100, 40, "CommandRegister");
+
+            for (int i = 0; i <= 100; i++) {
+                bar.update(i);
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    // pass
+                }
+            }
+
+            bar.finish();
+
+            logger.info("Done with {} guilds", guild.getMembers().size());
         }
 
         EmbedBuilder embedBuilder = new EmbedBuilder()
