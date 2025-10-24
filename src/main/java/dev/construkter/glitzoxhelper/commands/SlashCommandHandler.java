@@ -56,10 +56,10 @@ public class SlashCommandHandler extends ListenerAdapter {
                     return;
                 }
 
-                var type = Type.getTypeByString(typeIn.getAsString());
+                var type = AnnouncementType.getTypeByString(typeIn.getAsString());
 
                 if (type == null) {
-                    event.reply("Wrong Type (dm or channel)").setEphemeral(true).queue();
+                    event.reply("Wrong AnnouncementType (dm or channel)").setEphemeral(true).queue();
                     return;
                 }
 
@@ -189,16 +189,16 @@ public class SlashCommandHandler extends ListenerAdapter {
     }
 }
 
-enum Type {
+enum AnnouncementType {
     channel,
     dm;
 
     @Nullable
-    public static Type getTypeByString(String type) {
+    public static AnnouncementType getTypeByString(String type) {
         if (type.equalsIgnoreCase("channel")) {
-            return Type.channel;
+            return AnnouncementType.channel;
         } else if (type.equalsIgnoreCase("dm")) {
-            return Type.dm;
+            return AnnouncementType.dm;
         } else {
             return null;
         }

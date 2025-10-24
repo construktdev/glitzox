@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 public class DebugLogger extends ListenerAdapter {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(DebugLogger.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DebugLogger.class);
 
     @Override
     public void onGenericEvent(GenericEvent event) {

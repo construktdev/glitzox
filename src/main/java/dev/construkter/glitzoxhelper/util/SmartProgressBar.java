@@ -1,7 +1,5 @@
 package dev.construkter.glitzoxhelper.util;
 
-import org.slf4j.Logger;
-
 public class SmartProgressBar {
     private final int total;
     private final int barLength;
